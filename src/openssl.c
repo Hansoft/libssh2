@@ -242,7 +242,7 @@ _libssh2_dsa_sha1_verify(libssh2_dsa_ctx * dsactx,
 
     dsasig = DSA_SIG_new();
 #ifdef HAVE_OPAQUE_STRUCTS
-    DSA_SIG_set0(dsasig, r, s);
+    ECDSA_SIG_set0(dsasig, r, s);
 #else
     dsasig->r = r;
     dsasig->s = s;
@@ -1892,7 +1892,7 @@ _libssh2_dsa_sha1_sign(libssh2_dsa_ctx * dsactx,
     }
 
 #ifdef HAVE_OPAQUE_STRUCTS
-    DSA_SIG_get0(sig, &r, &s);
+    ECDSA_SIG_get0(sig, &r, &s);
 #else
     r = sig->r;
     s = sig->s;
